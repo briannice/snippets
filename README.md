@@ -1,2 +1,3 @@
-# snippets
-Snippet application made with React, Java Spring and PostgrSQL
+# Snippets
+
+Snippet application made with React, Java Spring and PostgrSQL.
