@@ -1,4 +1,4 @@
-package com.briannice.snippets.auth;
+package com.briannice.snippets.jwt;
 
 import java.io.IOException;
 
