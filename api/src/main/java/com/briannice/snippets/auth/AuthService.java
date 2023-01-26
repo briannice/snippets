@@ -1,5 +1,7 @@
 package com.briannice.snippets.auth;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public RegisterResponse register(RegisterRequest registerRequest) {
         var user = User
@@ -48,6 +51,22 @@ public class AuthService {
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
-        return null;
+        var username = loginRequest.getUsername();
+        var password = loginRequest.getPassword();
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+
+        var user = userRepository.findByUsername(username).orElseThrow();
+        var token = jwtService.generateToken(user);
+
+        var result = LoginResponse
+                .builder()
+                .username(user.getUsername())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .token(token)
+                .build();
+
+        return result;
     }
 }
