@@ -1,4 +1,4 @@
-package com.briannice.snippets.account;
+package com.briannice.snippets.user;
 
 import java.util.List;
 
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(path = "/api/accounts")
+@RequestMapping(path = "/api/users")
 @RequiredArgsConstructor
-public class AccountController {
+public class UserController {
 
-    private final AccountService accountService;
+    private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts() {
-        var accounts = accountService.getAllAccounts();
-        return ResponseEntity.ok().body(accounts);
+    public ResponseEntity<List<User>> getAllUsers() {
+        var users = userService.getAllUsers();
+        return ResponseEntity.ok().body(users);
     }
 
 }
