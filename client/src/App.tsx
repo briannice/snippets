@@ -1,5 +1,12 @@
+import Router from '@/Router'
+import { BrowserRouter } from 'react-router-dom'
+
 function App() {
-  return <div className="text-sm font-semibold text-blue-500">Snippets</div>
+  return (
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  )
 }
 
 export default App
